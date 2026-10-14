@@ -27,3 +27,9 @@ variable "subnet_address_prefix" {
   type        = string
   default     = "10.10.1.0/24"
 }
+
+variable "https_source_address_prefix" {
+  description = "Source IP range allowed to access HTTPS; use a trusted CIDR"
+  type        = string
+  default     = "10.10.0.0/16"
+}
