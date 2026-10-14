@@ -22,3 +22,7 @@ output "virtual_network_address_space" {
   description = "IPv4 address space of the Azure virtual network"
   value       = azurerm_virtual_network.main.address_space
 }
+output "subnet_address_prefix" {
+  description = "IPv4 address range of the application subnet"
+  value       = azurerm_subnet.app.address_prefixes
+}
