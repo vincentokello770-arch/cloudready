@@ -18,7 +18,7 @@ The project uses **Terraform and HashiCorp Configuration Language (HCL)** to def
 - Document architecture, validation, security considerations, and troubleshooting.
 - Build practical skills transferable across major cloud platforms.
 
-## Planned Technology Stack
+## Technology Stack
 
 | Technology | Purpose |
 |---|---|
@@ -30,7 +30,7 @@ The project uses **Terraform and HashiCorp Configuration Language (HCL)** to def
 | GitHub | Public portfolio and source code hosting |
 | Markdown | Technical documentation |
 
-## Planned Architecture
+## Architecture Defined in Code
 
 The initial infrastructure design will include:
 
@@ -49,14 +49,20 @@ Resources will only be described as deployed after successful deployment and ver
 - [x] Configure Git identity.
 - [x] Initialize the local Git repository.
 - [x] Create a Terraform-focused `.gitignore`.
-- [ ] Define the project architecture.
-- [ ] Write Terraform configuration files.
-- [ ] Run Terraform formatting and validation.
+- [x] Define the project architecture.
+- [x] Write Terraform configuration files.
+- [x] Run Terraform formatting and validation.
 - [ ] Review the execution plan.
 - [ ] Configure Azure authentication if deployment is feasible.
 - [ ] Deploy and verify resources if an appropriate Azure subscription is available.
-- [ ] Publish the project to GitHub.
+- [x] Publish the project to GitHub.
 - [ ] Add deployment evidence, troubleshooting notes, and lessons learned.
+
+## Automated Validation
+
+GitHub Actions automatically checks Terraform formatting, initializes the configuration without a backend, and validates the configuration on pushes to the main branch and pull requests targeting main.
+
+The validation workflow passed successfully. See: https://github.com/vincentokello770-arch/cloudready/actions/runs/38542492638
 
 ## Security Practices
 
