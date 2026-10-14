@@ -2,25 +2,25 @@
 
 ## 1. Purpose
 
-CloudReady is an Infrastructure as Code (IaC) learning project that defines a basic Azure network using Terraform. It demonstrates cloud networking fundamentals, resource dependencies, and infrastructure documentation.
+CloudReady is an Infrastructure as Code (IaC) learning project that defines a basic Azure network using Terraform. It demonstrates cloud networking fundamentals, resource dependencies, infrastructure documentation, and automated validation.
 
 ## 2. Architecture Components
 
 ### Azure Resource Group
 
-The resource group `rg-cloudready-dev` organizes the project's Azure resources for management and lifecycle operations.
+The resource group `rg-cloudready-dev` organizes the project's Azure resources.
 
 ### Virtual Network
 
-The virtual network `vnet-cloudready-dev` uses the IPv4 address space `10.10.0.0/16`. It provides a private network boundary for Azure resources.
+The virtual network `vnet-cloudready-dev` uses the IPv4 address space `10.10.0.0/16`.
 
 ### Application Subnet
 
-The subnet `snet-cloudready-app` uses `10.10.1.0/24`, a smaller address range inside the virtual network. It is reserved for future application resources.
+The subnet `snet-cloudready-app` uses `10.10.1.0/24`, within the virtual network address space.
 
 ### Network Security Group
 
-The Network Security Group `nsg-cloudready-app` is associated with the application subnet. It evaluates network traffic against inbound and outbound security rules. Azure default NSG rules remain in effect unless overridden by applicable custom rules.
+The Network Security Group `nsg-cloudready-app` is associated with the application subnet. It evaluates network traffic against custom and Azure default security rules.
 
 ## 3. Logical Network Layout
 
@@ -32,7 +32,7 @@ Azure Subscription
             ├── Address range: 10.10.1.0/24
             └── Network Security Group: nsg-cloudready-app
 
-This is a logical representation of the intended configuration, not evidence of a deployed Azure environment.
+This represents the intended configuration, not a deployed Azure environment.
 
 ## 4. Addressing Design
 
@@ -42,29 +42,40 @@ This is a logical representation of the intended configuration, not evidence of 
 | Application subnet | `10.10.1.0/24` | Application network segment |
 
 The subnet address range is contained within the virtual network address space.
+
 ## 5. Security Considerations
-- The custom HTTPS inbound rule allows TCP port 443 from the configured source CIDR, which defaults to 10.10.0.0/16. This is an illustrative rule, not a complete least-privilege policy: Azure default NSG rules may still permit other traffic.
 
-- Apply the principle of least privilege when defining network access.
-- Avoid exposing application services to the public internet unless required.
-- Review inbound and outbound NSG rules before deployment.
+- A custom inbound rule allows TCP port 443 from the configured source CIDR, which defaults to `10.10.0.0/16`.
+- This rule is illustrative, not a complete least-privilege policy. Azure default NSG rules may permit other traffic.
+- Review inbound and outbound rules before deployment.
+- Avoid exposing application services publicly unless required.
 - Never commit credentials, access tokens, private keys, or Terraform state files.
-- Review the Terraform execution plan before applying infrastructure changes.
-- Check expected cloud costs before deployment.
+- Review the Terraform execution plan and expected costs before applying infrastructure changes.
 
-## 6. Current Status and Limitations
+## 6. Validation Status and Limitations
 
-The Terraform configuration has been formatted and validated locally. Azure resources have not been deployed because an Azure account and subscription are not currently available.
+- Terraform configuration has been formatted and validated locally.
+- GitHub Actions automatically checks Terraform formatting, initialization, and validation.
+- Azure resources have not been deployed because an Azure account and subscription are not available.
+- Live Azure deployment, runtime connectivity, and actual network behavior have not been tested.
+- Application workloads, public IP addresses, virtual machines, NAT gateways, and custom outbound restrictions are outside the current scope.
 
-The configuration does not yet include custom NSG rules, application workloads, a public IP address, a virtual machine, or a NAT gateway.
+## 7. Completed Work
 
-## 7. Planned Improvements
+- Defined the resource group, virtual network, and application subnet.
+- Associated a Network Security Group with the application subnet.
+- Added a configurable inbound HTTPS security rule.
+- Added Terraform variables and outputs.
+- Added a sample variables file and configuration instructions.
+- Configured GitHub Actions for automated Terraform validation.
+- Documented architecture, security considerations, and project limitations.
 
-1. Define and validate explicit NSG security rules.
-2. Review network traffic flows and routing requirements.
-3. Run Terraform plan when Azure authentication is available.
-4. Deploy only when a suitable Azure subscription is available and costs have been reviewed.
-5. Capture deployment evidence and document troubleshooting results.
+## 8. Future Work
+
+1. Review and test network security requirements before deployment.
+2. Run a Terraform plan when Azure subscription access becomes available.
+3. Review the plan and costs before any deployment.
+4. Capture deployment evidence and document troubleshooting results.
 
 ---
 
