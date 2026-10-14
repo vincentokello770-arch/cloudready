@@ -43,6 +43,7 @@ This is a logical representation of the intended configuration, not evidence of 
 
 The subnet address range is contained within the virtual network address space.
 ## 5. Security Considerations
+- The custom HTTPS inbound rule allows TCP port 443 from the configured source CIDR, which defaults to 10.10.0.0/16. This is an illustrative rule, not a complete least-privilege policy: Azure default NSG rules may still permit other traffic.
 
 - Apply the principle of least privilege when defining network access.
 - Avoid exposing application services to the public internet unless required.
