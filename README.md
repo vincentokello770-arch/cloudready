@@ -87,3 +87,18 @@ This repository documents my hands-on journey toward cloud engineering and cloud
 ---
 
 *Project status: In development. Planned components and deployment status will be updated as implementation progresses.*
+## Configuration
+
+Before using this Terraform project, create a local variables file from the example:
+
+```bash
+cp terraform/terraform.tfvars.example terraform/terraform.tfvars
+```
+
+Edit `terraform/terraform.tfvars` and replace `YOUR-AZURE-SUBSCRIPTION-ID` with your Azure subscription ID when one is available.
+
+The local `terraform.tfvars` file is excluded from Git to help prevent accidental commits of environment-specific configuration.
+
+The example file contains illustrative values only. Review the network address ranges and security rules before using this configuration in a real environment.
+
+**Deployment status:** This project has been validated using Terraform and GitHub Actions. Azure resources have not been deployed.
